@@ -113,7 +113,7 @@ fi
 echo ""
 echo "Done! Next recommended steps:"
 echo "  1. Create your GitHub repo first (Single Source of Truth) and copy skills/github-shared-truth/templates/PULL_REQUEST_TEMPLATE.md to .github/pull_request_template.md."
-echo "  2. Copy templates/AGENTS_TEMPLATE.md to your repo root as AGENTS.md (symlink CLAUDE.md -> AGENTS.md if using Claude Code)."
+echo "  2. Copy skills/constitution-blueprint/templates/AGENTS_TEMPLATE.md to your repo root as AGENTS.md (keeps the §0 skill-invocation block so new sessions never skip these skills; symlink CLAUDE.md -> AGENTS.md if using Claude Code)."
 echo "  3. Build local code graph: uv tool install code-review-graph && code-review-graph install && code-review-graph build"
 echo "  4. (Recommended) Install Grill-Me for blueprint co-design: npx skills@latest add mattpocock/skills --skill=grill-me"
 echo "  5. Ask your coding agent to run 'constitution-blueprint' and push the 5 truth docs to GitHub main."

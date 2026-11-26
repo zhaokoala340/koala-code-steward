@@ -13,7 +13,7 @@
 4. **账面单测全绿，一真用全露馅**：几百个模拟单测全绿，打开真实浏览器像普通用户一样点两下，页面白屏、按钮点不动、前后端字段全错位。
 5. **厨师自己当食安督查**：同一个 AI 写完代码自己给自己点赞，既不追问当初没遵循什么原则，也不扫清全仓同类隐患，下周同一个坑换个地方继续炸。
 
-**考拉代码管家（`koala-code-steward`）** 是一套从真实高强度多 Agent 研发实战中提炼出来的**开源自然语言研发治理（Harness）Skill 套件**。它遵循开源 [Agent Skills](https://agentskills.io) 标准，装进 **Claude Code、OpenAI Codex、Cursor、Antigravity、OpenCode** 即可直接用起来。
+**考拉代码管家（`koala-code-steward`）** 是一套从真实高强度多 Agent 研发实战中提炼出来的**开源自然语言研发治理（Harness）Skill 套件**，**专为不懂代码、靠 AI 做开发的人设计**：你只管用大白话说要做什么，它负责让 AI 按规矩施工、在测试环境验收、拿证据说话，并用你听得懂的比方向你汇报。它遵循开源 [Agent Skills](https://agentskills.io) 标准，装进 **Claude Code、OpenAI Codex、Cursor、Antigravity、OpenCode** 即可直接用起来。
 
 ---
 
@@ -33,12 +33,12 @@ flowchart LR
 
 | 模块 | Skill 目录 | 解决的核心痛点 | 关键交付物 |
 | :--- | :--- | :--- | :--- |
-| **总控导航** | [`skills/koala-code-steward/`](skills/koala-code-steward/SKILL.md) | 串联全流程、按阶段路由 6 大专职子 Skill、界定绿/黄/红决策边界与去代码化统一比喻沟通纪律 | 全链路调度、红黄绿拍板卡 |
+| **总控导航** | [`skills/koala-code-steward/`](skills/koala-code-steward/SKILL.md) | 串联全流程、按**轻/中/重三档**匹配流程分量、按阶段路由 6 大专职子 Skill、界定绿/黄/红决策边界、**说“好了”必附刚跑出的证据**与去代码化统一比喻沟通纪律 | 全链路调度、三档流程表、红黄绿拍板卡 |
 | **0. GitHub 正本与多 Agent 防断档** | [`skills/github-shared-truth/`](skills/github-shared-truth/SKILL.md) | **先在 GitHub 建仓**，把宪法/蓝图/规则/结论/错题本统一托管为唯一正本；独立分支/worktree + PR 前因后果 + 并发礼让 + 同船合入 + 锁定 SHA 交接，确保多 Agent 绝不互相改坏断档 | `.github/pull_request_template.md`、`docs/decisions/` ADR 模板 |
-| **1. 研发宪法与产品蓝图** | [`skills/constitution-blueprint/`](skills/constitution-blueprint/SKILL.md) | **推荐联动开源 `grill-me` 共建**：明确产品**是什么、不是什么**、封闭能力清单、唯一协议字段表、**Agent 与代码协同边界（含 5 步交接铁律）**及**活态错题本积累机制** | `AGENTS.md`、`PRODUCT_BLUEPRINT.md`、`PROTOCOL_FIELDS.md`、`BOUNDARIES.md`、`MISTAKE_BOOK.md` |
+| **1. 研发宪法与产品蓝图** | [`skills/constitution-blueprint/`](skills/constitution-blueprint/SKILL.md) | **推荐联动开源 `grill-me` 共建**：明确产品**是什么、不是什么**、封闭能力清单、**「当……时，应该……」验收标准**、唯一协议字段表、**Agent 与代码协同边界（含 5 步交接铁律）**及**活态错题本积累机制** | `AGENTS.md`、`PRODUCT_BLUEPRINT.md`、`PROTOCOL_FIELDS.md`、`BOUNDARIES.md`、`MISTAKE_BOOK.md` |
 | **2. 代码知识图谱（查图 + 必看源码）** | [`skills/code-review-graph/`](skills/code-review-graph/SKILL.md) | 先为代码仓建本地知识图谱；每次改代码前查图以**定义问题、定位改动点、看清上下游调用方、爆炸半径与缺失单测**，并**强制亲自逐行读完真源码后再落笔** | 本地代码图谱、影响面与单测缺口报告 |
-| **3(a). 纯视觉黑盒审查** | [`skills/visual-blackbox-review/`](skills/visual-blackbox-review/SKILL.md) | 界定**什么时候必须走视觉审查**、**清零防缓存假绿**、以及**代入真实付费用户身份**做纯黑盒并发压测与唯一结果北极星判定，战报锁 SHA 回写 GitHub | 视觉验收指令单、分级缺陷单、零干扰异常信号表 |
-| **3(b). 第一性原理代码审查** | [`skills/first-principles-code-review/`](skills/first-principles-code-review/SKILL.md) | 干活与验收分离（`Generator ≠ Evaluator`），独立审码官凭**四层 7 项一票否决（含素描模特红线与防断档检查）**、**5 面换皮补丁镜子**与极简机械门禁硬核把关 | `【合宪放行】/【违宪打回】` 判决书 + 4 行白话监理单 |
+| **3(a). 纯视觉黑盒审查** | [`skills/visual-blackbox-review/`](skills/visual-blackbox-review/SKILL.md) | 界定**什么时候必须走视觉审查**、**只在与正式环境分开的测试环境上测**、**清零防缓存假绿**、**逐条对照验收标准**、以及**代入真实付费用户身份**做纯黑盒并发压测与唯一结果北极星判定，战报锁 SHA 回写 GitHub | 视觉验收指令单、分级缺陷单、零干扰异常信号表 |
+| **3(b). 第一性原理代码审查** | [`skills/first-principles-code-review/`](skills/first-principles-code-review/SKILL.md) | 干活与验收分离（`Generator ≠ Evaluator`），重要代码上线前必做**对抗式审查**（默认有坑、主动把它弄坏并留攻击记录），独立审码官凭**四层 7 项一票否决（含素描模特红线与防断档检查）**、**5 面换皮补丁镜子**与极简机械门禁硬核把关 | `【合宪放行】/【违宪打回】` 判决书 + 4 行白话监理单 |
 | **3(c). 结论归因、架构师升维与素描模特** | [`skills/root-cause-and-best-practices/`](skills/root-cause-and-best-practices/SKILL.md) | 审出问题后**不糊表面补丁**：先切换**首席系统架构师**身份从架构层复盘根源 → 灵魂两连问（追缺失原则 → 全仓查一再查十）+ **「素描模特原则」**（先看可靠开源代码结构降幻觉，未经授权绝不直接搬运）+ 预装脱敏示范的活态错题本迭代 | 架构归因单、素描模特对照结论、活态错题本更新 |
 
 ---
@@ -83,12 +83,16 @@ cd /path/to/your-project && code-review-graph build
 npx skills@latest add mattpocock/skills --skill=grill-me
 ```
 
+### 3. 让 AI 把调用约定写进你项目的 `AGENTS.md`（防止新对话漏用）
+
+装好后第一次在项目里对话时，总控 Skill 会**主动询问**你：要不要把本套 Skill 的调用约定写进项目根目录的 `AGENTS.md`。建议同意——写进去之后，以后任何新对话、任何 AI 一进项目都会自动按这套流程干活，不会漏用。
+
 ---
 
 ## 5 分钟跑通第一轮闭环
 
-1. **先在 GitHub 建仓，挂好共享正本与留痕模板**：启用 `github-shared-truth`，建仓并放入 `.github/pull_request_template.md`。
-2. **联动 `grill-me` 共建研发宪法与产品蓝图**：启用 `constitution-blueprint`，磨清产品是什么/不是什么、Agent 与代码边界、唯一字段总表与错题本规则，合入 GitHub `main`。
+1. **先在 GitHub 建仓，挂好共享正本与留痕模板**：启用 `github-shared-truth`，建仓并放入 `.github/pull_request_template.md`（暂时用不了 GitHub 时，按该 Skill 第三节的入门模式起步）；同时让 AI 帮你**开辟一套与正式环境分开的测试环境**。
+2. **联动 `grill-me` 共建研发宪法与产品蓝图**：启用 `constitution-blueprint`，磨清产品是什么/不是什么、「当……时，应该……」验收标准、Agent 与代码边界、唯一字段总表与错题本规则，合入 GitHub `main`。
 3. **建图谱、改前查图并亲自读真源码**：启用 `code-review-graph`，查清调用链、爆炸半径与缺失单测，逐行读完目标与关联源码；遇经典机制按**素描模特原则**对照可靠开源结构降幻觉（未经授权不搬运）。
 4. **独立审码 + 清零纯视觉验收**：另开独立会话跑 `first-principles-code-review`（锁 SHA 签发判决），涉用户可见链路跑 `visual-blackbox-review`（清零缓存、代入严苛付费用户）。
 5. **追原则升维、同船回写 GitHub 正本**：任何缺陷交由 `root-cause-and-best-practices` 追原则、全仓查一再查十，并把原则与思维跃迁同船合回 GitHub `main`。
@@ -106,9 +110,6 @@ koala-code-steward/
 ├── ARCHITECTURE.md                            # 考拉代码管家自然语言研发治理架构白皮书
 ├── LICENSE                                    # MIT 开源协议
 ├── install.sh                                 # 跨工具一键安装脚本
-├── templates/                                 # 项目根目录即用启动模板
-│   ├── AGENTS_TEMPLATE.md                     # 跨对话研发总宪模板（托管于 GitHub main）
-│   └── MISTAKE_BOOK_TEMPLATE.md               # 预装 4 组脱敏思维跃迁 + 6 面镜子的活态错题本模板
 └── skills/
     ├── koala-code-steward/                    # 总控导航 Skill（全流程编排 + 红黄绿决策）
     │   └── SKILL.md
@@ -122,8 +123,8 @@ koala-code-steward/
     │   ├── references/
     │   │   └── two-boundaries-guide.md        # Agent×代码边界 + 5 步交接铁律 + 错题本运营法 + 正反例
     │   └── templates/
-    │       ├── AGENTS_TEMPLATE.md             # 跨对话研发总宪模板
-    │       ├── PRODUCT_BLUEPRINT.md           # 产品是什么 / 不是什么 / 封闭清单模板
+    │       ├── AGENTS_TEMPLATE.md             # 跨对话研发总宪模板（含 §0 Skill 调用约定，复制为项目根目录 AGENTS.md）
+    │       ├── PRODUCT_BLUEPRINT.md           # 产品是什么 / 不是什么 / 封闭清单 /「当……时，应该……」验收标准模板
     │       ├── PROTOCOL_FIELDS.md             # 官方优先唯一接口与字段总表模板
     │       ├── BOUNDARIES.md                  # 底座 vs 自研 & 代码层 vs 提示词层（+可选快模型）边界表
     │       └── MISTAKE_BOOK_TEMPLATE.md       # 预装脱敏起步示范的活态错题本模板
