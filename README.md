@@ -47,7 +47,16 @@ flowchart LR
 
 本套件遵循开源 **Agent Skills** 规范（`SKILL.md` + `references/` + `templates/`），按需渐进加载，不浪费上下文。
 
-### 1. 一键安装全部 7 个 Skill
+### 1. 一行命令直接装齐全部 7 个 Skill（最推荐）
+
+```bash
+npx skills add zhaokoala340/koala-code-steward
+```
+
+> 自动识别你电脑里的 **Claude Code、OpenAI Codex、Cursor、Antigravity、OpenCode** 等主流 AI 编程工具，一条命令把全部 7 个 Skill（含内置模板与错题本）装到位。也可以按需只装单个 Skill，例如 `npx skills add zhaokoala340/koala-code-steward --skill koala-code-steward`。
+
+<details>
+<summary>备选方式：手动克隆并用脚本安装（适合离线或批量装入多个目录）</summary>
 
 ```bash
 git clone https://github.com/zhaokoala340/koala-code-steward.git
@@ -59,6 +68,8 @@ cd koala-code-steward
 # 或者安装到本机全局（适用你电脑上的全部项目）
 ./install.sh --target all --scope global
 ```
+
+</details>
 
 ### 2. 推荐配齐两个开源搭档工具（1 分钟装完）
 
