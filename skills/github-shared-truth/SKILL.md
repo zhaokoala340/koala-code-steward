@@ -7,7 +7,7 @@ description: >-
   凡新项目建仓、多 Agent 并行开发、准备提交/合并 PR、或跨对话交接审查与整改结论时必须触发本 Skill。
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   stage: "0a-github-shared-truth"
 ---
 
@@ -27,7 +27,7 @@ metadata:
 | **研发总宪** | `AGENTS.md`（可软链 `CLAUDE.md`） | 任何新进场的 Agent 一进仓库就自动读到同一套红线与决策权 |
 | **封闭产品蓝图** | `PRODUCT_BLUEPRINT.md` | 统一对齐产品是什么、不是什么、封闭范围，防某个 Agent 擅自加料 |
 | **唯一协议与字段总表** | `PROTOCOL_FIELDS.md` | 前后端与多 Agent 共看一张接口与事件表，杜绝各自起名 |
-| **Agent 与代码协同边界** | `BOUNDARIES.md` | 锁死官方底座 vs 自研、代码层 vs 提示词层（及按需推荐的可选快模型边界），防后来者把删掉的补丁又写回去 |
+| **Agent 与代码协同边界** | `BOUNDARIES.md` | 锁死官方底座 vs 自研、代码层 vs 提示词层（及按需推荐的可选快模型边界，产品含大模型时适用），防后来者把删掉的补丁又写回去 |
 | **活态错题本** | `MISTAKE_BOOK.md` | 让今天踩过的坑变成所有未来 Agent 共享的免疫记忆 |
 | **前因后果与根源外置交接单** | `docs/decisions/`、`docs/handoffs/` + GitHub PR / Issue | 记录每次重大取舍、视觉战报、审码判决，以及**自包含的问题根源 Markdown 交接单**（含代码仓路径、SHA、文件行号与源码摘录），方便用户直接扔给更高智力 Agent 接手 Review，也防后来者误删护栏 |
 
@@ -74,3 +74,14 @@ metadata:
 - 保护 `main` 分支：禁止直接 force-push，要求经 PR 合入且 CI 机械门禁全绿；
 - 把 [templates/PULL_REQUEST_TEMPLATE.md](templates/PULL_REQUEST_TEMPLATE.md) 放进 `.github/pull_request_template.md`；
 - 把 `.code-review-graph/`、本地临时测试目录与密钥文件写入 `.gitignore`。
+
+---
+
+## 三、用户暂时没有 GitHub 怎么办？（先推荐 GitHub，确实不行再按实际情况给入门模式）
+**原则上优先推荐 GitHub**：免费、可建私有仓库、所有 AI 共用同一份正本、出了事能一键找回任意旧版本。面对不懂代码的用户，AI 应先**主动代为完成建仓等全部操作**，用户只需自己完成注册、登录与授权这几步，并用大白话讲清“这就是整个工地唯一的图纸柜”。
+
+确实暂时用不了 GitHub 时（如网络受限、公司规定、用户明确拒绝），先问清原因，再按实际情况推荐入门模式：
+1. **能用同类平台就用同类平台**：若只是访问 GitHub 困难，可改用 Gitee、GitLab 等同类代码托管平台承担“唯一正本”角色，本 Skill 全部规则不变。
+2. **完全只能在本机时**：由 AI 在项目文件夹里启用本地版本记录（`git init`），每完成一步就存一个写清前因后果的版本，相当于游戏存档点；五件套与 `docs/` 照样落盘在项目根目录，规则不变，只是暂时住在本机。
+3. **同一时间只让一个 AI 改代码**：没有远端合并保护，多 Agent 并发极易互相覆盖；需要并行时，就是升级到 GitHub 的信号。
+4. **约定升级时机**：开始多 Agent 并行、多人协作，或准备给真实用户上线时，主动提醒用户迁移到 GitHub（本地版本记录可原样整体推上去，历史不丢）。
