@@ -29,17 +29,19 @@ flowchart LR
     P2A --> P2C["3c. 追原则归因 × 升维整改<br/>root-cause-and-best-practices<br/>追出缺失原则 → 查一再查十<br/>素描模特寻源 → 活态错题本同船回写 GitHub"]
     P2B --> P2C
     P2C -->|"原则、错题与决策同船合入 GitHub main"| GH
+    BUILD -.->|"每次答复收尾物理强制核真"| LD["4. 铁面测谎仪<br/>lie-detector<br/>Stop 钩子强制拦截 · 6 把刀查吹牛/假绿/假门面 · 补标灰灯盲区"]
 ```
 
 | 模块 | Skill 目录 | 解决的核心痛点 | 关键交付物 |
 | :--- | :--- | :--- | :--- |
-| **总控导航** | [`skills/koala-code-steward/`](skills/koala-code-steward/SKILL.md) | 串联全流程、按**轻/中/重三档**匹配流程分量、按阶段路由 6 大专职子 Skill、界定绿/黄/红决策边界、**说“好了”必附刚跑出的证据**与去代码化统一比喻沟通纪律 | 全链路调度、三档流程表、红黄绿拍板卡 |
+| **总控导航** | [`skills/koala-code-steward/`](skills/koala-code-steward/SKILL.md) | 串联全流程、按**轻/中/重三档**匹配流程分量、按阶段路由 7 大专职子 Skill、界定绿/黄/红决策边界、**说“好了”必附刚跑出的证据**与去代码化统一比喻沟通纪律 | 全链路调度、三档流程表、红黄绿拍板卡 |
 | **0. GitHub 正本与多 Agent 防断档** | [`skills/github-shared-truth/`](skills/github-shared-truth/SKILL.md) | **先在 GitHub 建仓**，把宪法/蓝图/规则/结论/错题本统一托管为唯一正本；独立分支/worktree + PR 前因后果 + 并发礼让 + 同船合入 + 锁定 SHA 交接，确保多 Agent 绝不互相改坏断档 | `.github/pull_request_template.md`、`docs/decisions/` ADR 模板 |
 | **1. 研发宪法与产品蓝图** | [`skills/constitution-blueprint/`](skills/constitution-blueprint/SKILL.md) | **推荐联动开源 `grill-me` 共建**：明确产品**是什么、不是什么**、封闭能力清单、**「当……时，应该……」验收标准**、唯一协议字段表、**Agent 与代码协同边界（含 5 步交接铁律）**及**活态错题本积累机制** | `AGENTS.md`、`PRODUCT_BLUEPRINT.md`、`PROTOCOL_FIELDS.md`、`BOUNDARIES.md`、`MISTAKE_BOOK.md` |
 | **2. 代码知识图谱（查图 + 必看源码）** | [`skills/code-review-graph/`](skills/code-review-graph/SKILL.md) | 先为代码仓建本地知识图谱；每次改代码前查图以**定义问题、定位改动点、看清上下游调用方、爆炸半径与缺失单测**，并**强制亲自逐行读完真源码后再落笔** | 本地代码图谱、影响面与单测缺口报告 |
 | **3(a). 纯视觉黑盒审查** | [`skills/visual-blackbox-review/`](skills/visual-blackbox-review/SKILL.md) | 界定**什么时候必须走视觉审查**、**只在与正式环境分开的测试环境上测**、**清零防缓存假绿**、**逐条对照验收标准**、以及**代入真实付费用户身份**做纯黑盒并发压测与唯一结果北极星判定，战报锁 SHA 回写 GitHub | 视觉验收指令单、分级缺陷单、零干扰异常信号表 |
 | **3(b). 第一性原理代码审查** | [`skills/first-principles-code-review/`](skills/first-principles-code-review/SKILL.md) | 干活与验收分离（`Generator ≠ Evaluator`），重要代码上线前必做**对抗式审查**（默认有坑、主动把它弄坏并留攻击记录），独立审码官凭**四层 7 项一票否决（含素描模特红线与防断档检查）**、**5 面换皮补丁镜子**与极简机械门禁硬核把关 | `【合宪放行】/【违宪打回】` 判决书 + 4 行白话监理单 |
-| **3(c). 结论归因、架构师升维与素描模特** | [`skills/root-cause-and-best-practices/`](skills/root-cause-and-best-practices/SKILL.md) | 审出问题后**不糊表面补丁**：先切换**首席系统架构师**身份从架构层复盘根源 → 灵魂两连问（追缺失原则 → 全仓查一再查十）+ **「素描模特原则」**（先看可靠开源代码结构降幻觉，未经授权绝不直接搬运）+ 预装脱敏示范的活态错题本迭代 | 架构归因单、素描模特对照结论、活态错题本更新 |
+| **3(c). 结论归因、架构师升维与素描模特** | [`skills/root-cause-and-best-practices/`](skills/root-cause-and-best-practices/SKILL.md) | 审出问题后**不糊表面补丁**：先切换**首席系统架构师**身份从架构层复盘根源 → 灵魂两连问（追缺失原则 → 全仓查一再查十）+ **「素描模特原则」**（先看可靠开源代码结构降幻觉，未经授权绝不直接搬运）+ 预装脱敏示范的活态错题本迭代 | 架构归因单、根源外置交接单、素描模特对照结论 |
+| **4. 铁面测谎仪（答后强制核真）** | [`skills/lie-detector/`](skills/lie-detector/SKILL.md) | **防 AI 吹牛、凭记忆瞎说、拿局部绿灯冒充全链路可用、拿波将金村假门面当已接通**：内置 6 把刀铁面核查 + 双平台物理 `Stop` 钩子脚本，每次回答结束自动拉起复检并强制补标「灰灯盲区」 | 极简「🔍 测谎仪复检」回执、Antigravity / Claude Code `Stop` 钩子脚本与模板 |
 
 ---
 
@@ -47,13 +49,13 @@ flowchart LR
 
 本套件遵循开源 **Agent Skills** 规范（`SKILL.md` + `references/` + `templates/`），按需渐进加载，不浪费上下文。
 
-### 1. 一行命令直接装齐全部 7 个 Skill（最推荐）
+### 1. 一行命令直接装齐全部 8 个 Skill（最推荐）
 
 ```bash
 npx skills add zhaokoala340/koala-code-steward
 ```
 
-> 自动识别你电脑里的 **Claude Code、OpenAI Codex、Cursor、Antigravity、OpenCode** 等主流 AI 编程工具，一条命令把全部 7 个 Skill（含内置模板与错题本）装到位。也可以按需只装单个 Skill，例如 `npx skills add zhaokoala340/koala-code-steward --skill koala-code-steward`。
+> 自动识别你电脑里的 **Claude Code、OpenAI Codex、Cursor、Antigravity、OpenCode** 等主流 AI 编程工具，一条命令把全部 8 个 Skill（含内置模板、预装错题本与双平台物理测谎仪钩子脚本）装到位。也可以按需只装单个 Skill，例如 `npx skills add zhaokoala340/koala-code-steward --skill lie-detector`。
 
 <details>
 <summary>备选方式：手动克隆并用脚本安装（适合离线或批量装入多个目录）</summary>
@@ -142,13 +144,20 @@ koala-code-steward/
     │   │   └── five-patch-mirrors.md          # 专抓 AI 换皮打补丁惯性的 5 面原版硬镜子
     │   └── templates/
     │       └── check-gates.mjs                # 极简机械门禁脚本母版（~80 行，拒写套娃脚手架）
-    └── root-cause-and-best-practices/         # 3(c). 结论归因、架构师升维与素描模特寻源 Skill
+    ├── root-cause-and-best-practices/         # 3(c). 结论归因、架构师升维与素描模特寻源 Skill
+    │   ├── SKILL.md
+    │   ├── references/
+    │   │   ├── thinking-leap-ladder.md        # 三组「思维跃迁阶梯示范」（第 0 层 → 第 2 层）
+    │   │   └── best-practice-playbook.md      # 「素描模特原则」与行业最佳实践四步寻源手册
+    │   └── templates/
+    │       └── ROOT_CAUSE_HANDOFF.md          # 问题根源外置 Markdown 交接单（直接丢给高智力 Agent 接手）
+    └── lie-detector/                          # 4. 铁面测谎仪 Skill（6 把刀答后核真 + 双平台物理 Stop 钩子）
         ├── SKILL.md
-        ├── references/
-        │   ├── thinking-leap-ladder.md        # 三组「思维跃迁阶梯示范」（第 0 层 → 第 2 层）
-        │   └── best-practice-playbook.md      # 「素描模特原则」与行业最佳实践四步寻源手册
+        ├── scripts/
+        │   └── stop-lie-detector-hook.mjs     # Antigravity / Claude Code 通用零依赖 Stop 物理拦截钩子
         └── templates/
-            └── ROOT_CAUSE_HANDOFF.md          # 问题根源外置 Markdown 交接单（直接丢给高智力 Agent 接手）
+            ├── antigravity-hooks.json         # Antigravity hooks.json 配置模板
+            └── claude-code-hook.json          # Claude Code settings.json Stop 钩子配置模板
 ```
 
 ---

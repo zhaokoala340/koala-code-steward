@@ -1,0 +1,12 @@
+{
+  "lie-detector": {
+    "enabled": true,
+    "Stop": [
+      {
+        "type": "command",
+        "command": "node \"$HOME/.gemini/config/skills/lie-detector/scripts/stop-lie-detector-hook.mjs\"",
+        "timeout": 10
+      }
+    ]
+  }
+}
