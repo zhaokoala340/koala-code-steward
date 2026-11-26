@@ -1,0 +1,17 @@
+# Local code graph index (never commit to Git)
+.code-review-graph/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Dependencies & build artifacts
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
