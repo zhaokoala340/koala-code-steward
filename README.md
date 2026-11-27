@@ -93,7 +93,13 @@ npx skills@latest add mattpocock/skills --skill=grill-me
 
 这不是本套件安装失败，也不是 Skill 内容报错；它表示 ACP 客户端试图把 Devin CLI 切到 **Bypass（全部自动批准）**，但当前会话启用了 OS 级 `--sandbox`。沙箱像“带护栏的操作台”：既然已经有护栏，Devin 只提供 **Autonomous** 模式，`bypass` 会被拒绝。
 
-按启动方式二选一：
+先升级 Devin CLI，排除旧版本客户端与服务端模式名单不一致的问题：
+
+```bash
+devin update
+```
+
+再按启动方式二选一：
 
 ```bash
 # 沙箱会话：使用 autonomous（通常也会自动选中）
@@ -102,6 +108,8 @@ devin --sandbox --permission-mode autonomous
 # 非沙箱会话：才可使用 bypass
 devin --permission-mode bypass
 ```
+
+如果你是从 Zed、Windsurf、Devin Desktop 等 ACP 客户端里启动 Devin，只改终端启动参数可能不够：这条日志本身就是客户端在请求切模式。请在客户端当前线程的模式选择器里把 **Bypass** 改成沙箱可用的 **Autonomous**（或退回 Normal），然后重开线程；旧版本若没有正确隐藏沙箱里的 Bypass，先执行上面的 `devin update`。
 
 启动日志里的 `loaded=148 by_provider=[...]` 只是扫描到的 Skill 数量统计；`errors=1` 表示另有一条 Skill 加载失败，需要看更完整日志定位，它与上面的 `bypass` 拒绝不是同一件事。若不希望 Devin CLI 继承 Codex 等工具的 Skills，可在 Devin 配置中关闭对应 `read_config_from` 来源。
 
